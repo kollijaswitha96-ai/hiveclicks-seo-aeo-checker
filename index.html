@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>HiveClicks | Free Website SEO & AEO Audit Tool</title>
-  <meta name="description" content="Audit your website for traditional Google SEO and modern Answer Engine Optimization (AEO - ChatGPT, Perplexity, Claude, AI Overviews). Download your detailed PDF report.">
+  <meta name="description" content="Audit your website for traditional Google SEO and modern Answer Engine Optimization (AEO - ChatGPT, Perplexity, Claude, AI Overviews). Download your detailed PDF report and connect with HiveClicks.">
   <link rel="icon" type="image/png" href="logo.png">
 
   <!-- Tailwind CSS CDN -->
@@ -115,7 +115,7 @@
 </head>
 <body class="selection:bg-emerald-500 selection:text-white flex flex-col min-h-screen">
 
-  <!-- Interactive Atmosphere Floating Badges -->
+  <!-- Interactive Atmosphere Background Badges -->
   <div class="fixed inset-0 pointer-events-none -z-10 overflow-hidden">
     <div class="absolute -top-32 -left-32 w-96 h-96 bg-emerald-500/15 rounded-full blur-[120px] animate-pulse-glow"></div>
     <div class="absolute top-1/4 -right-32 w-[30rem] h-[30rem] bg-blue-600/15 rounded-full blur-[140px] animate-pulse-glow" style="animation-delay: 1.5s;"></div>
@@ -169,20 +169,23 @@
         </div>
       </a>
 
+      <!-- Header Action: Connect with HiveClicks Team -->
       <div class="flex items-center gap-4">
         <a href="#why-aeo" class="hidden md:inline-flex text-xs font-semibold text-slate-300 hover:text-emerald-400 transition-colors">
           Why AEO Matters
         </a>
-        <button onclick="toggleAdminModal()" class="text-xs font-semibold text-slate-400 hover:text-emerald-400 transition-colors flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/10 hover:border-emerald-500/30">
-          <i data-lucide="lock" class="w-3.5 h-3.5 text-amber-400"></i>
-          <span>Admin Leads</span>
-        </button>
-        <a href="#audit-tool" class="gradient-border-btn inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-white shadow-xl">
+        <a 
+          href="https://hiveclicks.com/" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="gradient-border-btn inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-extrabold text-white shadow-xl"
+        >
           <span class="relative flex h-2 w-2">
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-60"></span>
             <span class="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
           </span>
-          <span>Free SEO & AEO Checker</span>
+          <span>Connect with HiveClicks Team</span>
+          <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
         </a>
       </div>
     </div>
@@ -273,10 +276,19 @@
             <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
             <span>Audit Another URL</span>
           </button>
-          <button onclick="downloadPdf()" class="px-6 py-2.5 rounded-xl font-extrabold text-xs sm:text-sm bg-gradient-to-r from-emerald-400 via-teal-400 to-blue-500 text-slate-950 shadow-xl shadow-emerald-500/25 hover:shadow-emerald-500/40 transition-all flex items-center gap-2 transform active:scale-95">
+          <button onclick="downloadPdf()" class="px-5 py-2.5 rounded-xl font-extrabold text-xs sm:text-sm bg-gradient-to-r from-emerald-400 to-teal-500 text-slate-950 shadow-xl shadow-emerald-500/25 hover:shadow-emerald-500/40 transition-all flex items-center gap-2 transform active:scale-95">
             <i data-lucide="download" class="w-4 h-4"></i>
-            <span>Download Detailed PDF Audit</span>
+            <span>Download Detailed PDF</span>
           </button>
+          <a 
+            href="https://hiveclicks.com/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="px-5 py-2.5 rounded-xl font-extrabold text-xs sm:text-sm bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-xl hover:from-blue-500 hover:to-indigo-500 transition-all flex items-center gap-2 transform active:scale-95"
+          >
+            <span>Connect for SEO Strategy</span>
+            <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+          </a>
         </div>
       </div>
 
@@ -423,22 +435,34 @@
       <!-- Itemized Checklist Findings -->
       <div id="checks-list" class="space-y-4 mb-12"></div>
 
-      <!-- Bottom Executive CTA Banner -->
-      <div class="glass-card rounded-3xl p-8 sm:p-10 border border-emerald-500/30 text-center relative overflow-hidden">
+      <!-- Bottom Executive CTA Banner with direct link to hiveclicks.com -->
+      <div class="glass-card rounded-3xl p-8 sm:p-12 border border-emerald-500/30 text-center relative overflow-hidden">
         <div class="absolute top-0 right-0 w-80 h-80 bg-gradient-to-bl from-emerald-500/10 via-blue-500/10 to-transparent rounded-full blur-3xl pointer-events-none"></div>
 
-        <img src="logo.png" alt="HiveClicks" class="h-10 w-auto mx-auto mb-4 object-contain" />
+        <img src="logo.png" alt="HiveClicks" class="h-12 w-auto mx-auto mb-4 object-contain" />
         <h3 class="text-2xl sm:text-3xl font-black text-white mb-2">
-          Want HiveClicks to Optimize Your Rankings & AI Citations?
+          Ready to Execute the Perfect SEO & AEO Strategy?
         </h3>
         <p class="text-sm text-slate-300 max-w-xl mx-auto mb-8 leading-relaxed">
-          Download your comprehensive PDF report now, or connect with the HiveClicks search and growth engineering team to implement these recommendations.
+          Improve your Google search rankings, dominate AI Overviews, and drive high-intent organic sales with HiveClicks' specialized digital marketing engineering.
         </p>
 
-        <button onclick="downloadPdf()" class="px-8 py-4 rounded-xl font-extrabold text-sm bg-gradient-to-r from-emerald-400 via-teal-400 to-blue-500 text-slate-950 shadow-2xl shadow-emerald-500/30 hover:shadow-emerald-500/50 transition-all inline-flex items-center gap-2.5 transform active:scale-95">
-          <i data-lucide="download" class="w-4 h-4"></i>
-          <span>Download Detailed PDF Report</span>
-        </button>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <button onclick="downloadPdf()" class="w-full sm:w-auto px-7 py-4 rounded-xl font-bold text-sm bg-white/10 hover:bg-white/15 border border-white/20 text-white transition-all inline-flex items-center justify-center gap-2">
+            <i data-lucide="download" class="w-4 h-4"></i>
+            <span>Download PDF Report</span>
+          </button>
+
+          <a 
+            href="https://hiveclicks.com/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="w-full sm:w-auto px-8 py-4 rounded-xl font-extrabold text-sm bg-gradient-to-r from-emerald-400 via-teal-400 to-blue-500 text-slate-950 shadow-2xl shadow-emerald-500/30 hover:shadow-emerald-500/50 transition-all inline-flex items-center justify-center gap-2.5 transform active:scale-95"
+          >
+            <span>Connect with HiveClicks Team for Strategy</span>
+            <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+          </a>
+        </div>
       </div>
     </section>
 
@@ -536,42 +560,7 @@
     </div>
   </div>
 
-  <!-- ADMIN LEADS MODAL -->
-  <div id="admin-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-xl">
-    <div class="relative w-full max-w-3xl p-6 sm:p-8 rounded-3xl bg-[#0D1527] border border-white/10 shadow-2xl max-h-[85vh] flex flex-col">
-      <div class="flex items-center justify-between pb-4 border-b border-white/10 mb-4">
-        <h3 class="text-xl font-black text-white flex items-center gap-2">
-          <i data-lucide="users" class="w-5 h-5 text-emerald-400"></i>
-          <span>HiveClicks Captured Leads</span>
-        </h3>
-        <div class="flex items-center gap-3">
-          <button onclick="exportLeadsCsv()" class="px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-emerald-400 to-teal-500 text-slate-950 text-xs font-bold flex items-center gap-1.5 shadow-md">
-            <i data-lucide="download" class="w-3.5 h-3.5"></i>
-            <span>Export CSV</span>
-          </button>
-          <button onclick="toggleAdminModal()" class="text-slate-400 hover:text-white text-sm">✕</button>
-        </div>
-      </div>
-      <div class="flex-1 overflow-y-auto">
-        <table class="w-full text-left text-xs">
-          <thead class="bg-white/5 text-slate-400 uppercase font-semibold">
-            <tr>
-              <th class="p-3">Date</th>
-              <th class="p-3">Name</th>
-              <th class="p-3">Email</th>
-              <th class="p-3">Website</th>
-              <th class="p-3 text-center">Overall</th>
-              <th class="p-3 text-center">SEO</th>
-              <th class="p-3 text-center">AEO</th>
-            </tr>
-          </thead>
-          <tbody id="admin-leads-body" class="divide-y divide-white/5"></tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-
-  <!-- Global Footer -->
+  <!-- Global Footer with Discreet Admin Link -->
   <footer class="border-t border-white/10 bg-[#05080F] py-12 px-4 text-slate-400 text-xs">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
       <div class="flex items-center gap-3">
@@ -582,8 +571,9 @@
         </div>
       </div>
       <div class="flex items-center gap-6">
+        <a href="https://hiveclicks.com/" target="_blank" class="hover:text-emerald-400 transition-colors">HiveClicks Services</a>
         <a href="#audit-tool" class="hover:text-emerald-400 transition-colors">Free Checker</a>
-        <button onclick="toggleAdminModal()" class="hover:text-emerald-400 transition-colors">Admin Portal</button>
+        <a href="admin.html" class="text-slate-500 hover:text-slate-300 transition-colors">Admin Portal</a>
         <span>© 2026 HiveClicks. All rights reserved.</span>
       </div>
     </div>
@@ -684,7 +674,6 @@
       let markdownText = "";
       let fetchSuccess = false;
 
-      // Timeout wrapper
       async function fetchWithTimeout(url, options = {}, timeoutMs = 8000) {
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
@@ -698,7 +687,7 @@
         }
       }
 
-      // Method 1: Jina AI Open Reader with HTML return (Industry standard for LLM crawlers)
+      // Method 1: Jina AI Open Reader with HTML return
       try {
         const jinaRes = await fetchWithTimeout(`https://r.jina.ai/${targetUrl}`, {
           headers: { "X-Return-Format": "html" }
@@ -710,11 +699,9 @@
             fetchSuccess = true;
           }
         }
-      } catch (e) {
-        console.warn("Jina HTML engine:", e);
-      }
+      } catch (e) {}
 
-      // Method 2: Jina AI Open Reader Standard (Markdown & Metadata)
+      // Method 2: Jina AI Open Reader Standard
       if (!fetchSuccess) {
         try {
           const jinaStd = await fetchWithTimeout(`https://r.jina.ai/${targetUrl}`, {}, 7000);
@@ -725,9 +712,7 @@
               fetchSuccess = true;
             }
           }
-        } catch (e) {
-          console.warn("Jina standard engine:", e);
-        }
+        } catch (e) {}
       }
 
       // Method 3: CodeTabs CORS Proxy
@@ -760,7 +745,6 @@
 
       const responseTime = Math.max(180, Math.round(performance.now() - startTime));
 
-      // Extract metadata whether from HTML or Markdown
       let title = "";
       let description = "";
       let canonical = "";
@@ -805,7 +789,6 @@
 
         questionMatches = (html.match(/(\?<\/h[1-4]>)|(<dt>)|(class="[^"]*faq[^"]*")/gi) || []).length;
       } else if (markdownText) {
-        // Parse from Jina Markdown output
         const titleMatch = markdownText.match(/^Title:\s*(.+)$/m);
         if (titleMatch) title = titleMatch[1].trim();
 
@@ -829,7 +812,6 @@
         schemas = ["Organization", "WebSite"];
         questionMatches = (markdownText.match(/\?\s*\n/g) || []).length;
       } else {
-        // Fallback baseline for domain
         title = `${domain.replace(/\.[^.]+$/, '').toUpperCase()} - Official Website`;
         description = `Official website for ${domain}. Discover our latest products, services, and updates.`;
         h1Text = `Welcome to ${domain}`;
@@ -837,7 +819,6 @@
         schemas = ["Organization"];
       }
 
-      // Checkpoints construction
       const hasFaqSchema = schemas.some(s => /FAQ/i.test(s));
       const hasQA = hasFaqSchema || questionMatches > 0;
 
@@ -981,7 +962,6 @@
       };
     }
 
-    // Number Counter Animation
     function animateCounter(id, target, suffix = "") {
       const el = document.getElementById(id);
       if (!el) return;
@@ -1212,18 +1192,18 @@
         y += 58;
       });
 
-      // Agency Consultation Box
+      // Agency Consultation Box with direct link to hiveclicks.com
       if (y > 720) { doc.addPage(); y = margin; }
       doc.setFillColor(7, 11, 20);
       doc.roundedRect(margin, y, pw - margin * 2, 65, 5, 5, "F");
       doc.setTextColor(16, 185, 129);
       doc.setFont("helvetica", "bold");
       doc.setFontSize(11);
-      doc.text("Ready to Accelerate Your Rankings & AI Citations?", margin + 16, y + 22);
+      doc.text("Ready for the Perfect SEO & AEO Strategy?", margin + 16, y + 22);
       doc.setFont("helvetica", "normal");
       doc.setFontSize(8.5);
       doc.setTextColor(203, 213, 225);
-      doc.text("Contact the HiveClicks team to implement these technical and content optimizations.", margin + 16, y + 38);
+      doc.text("Connect with HiveClicks digital marketing & search growth experts to implement these fixes.", margin + 16, y + 38);
       doc.setTextColor(59, 130, 246);
       doc.text("Visit: https://hiveclicks.com  |  Email: contact@hiveclicks.com", margin + 16, y + 52);
 
@@ -1244,66 +1224,6 @@
         aeoScore: audit.aeoScore
       });
       localStorage.setItem("hiveclicks_leads", JSON.stringify(records));
-    }
-
-    function toggleAdminModal() {
-      const modal = document.getElementById("admin-modal");
-      if (modal.classList.contains("hidden")) {
-        const pass = prompt("Enter Admin Passcode (default: hiveclicks):");
-        if (pass !== "hiveclicks") {
-          alert("Incorrect passcode.");
-          return;
-        }
-        modal.classList.remove("hidden");
-        loadAdminLeads();
-      } else {
-        modal.classList.add("hidden");
-      }
-    }
-
-    function loadAdminLeads() {
-      const tbody = document.getElementById("admin-leads-body");
-      const records = JSON.parse(localStorage.getItem("hiveclicks_leads") || "[]");
-      if (records.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="7" class="p-8 text-center text-slate-400">No leads recorded yet. Run a free audit on the home page!</td></tr>`;
-        return;
-      }
-      tbody.innerHTML = records.map(r => `
-        <tr class="hover:bg-white/5 transition-colors">
-          <td class="p-3 text-slate-400">${new Date(r.date).toLocaleDateString()}</td>
-          <td class="p-3 font-bold text-white">${r.name}</td>
-          <td class="p-3 text-emerald-400 font-mono">${r.email}</td>
-          <td class="p-3 text-blue-400 font-mono">${r.website}</td>
-          <td class="p-3 text-center font-black text-emerald-400">${r.overallScore}</td>
-          <td class="p-3 text-center text-blue-400 font-bold">${r.seoScore}</td>
-          <td class="p-3 text-center text-amber-400 font-bold">${r.aeoScore}</td>
-        </tr>
-      `).join("");
-    }
-
-    function exportLeadsCsv() {
-      const records = JSON.parse(localStorage.getItem("hiveclicks_leads") || "[]");
-      if (records.length === 0) {
-        alert("No leads to export yet.");
-        return;
-      }
-      const headers = ["Date", "Name", "Email", "Company", "Website", "Overall Score", "SEO Score", "AEO Score"];
-      const rows = records.map(r => [
-        `"${new Date(r.date).toLocaleString()}"`,
-        `"${r.name}"`,
-        `"${r.email}"`,
-        `"${r.company || ''}"`,
-        `"${r.website}"`,
-        r.overallScore,
-        r.seoScore,
-        r.aeoScore
-      ]);
-      const csv = [headers.join(","), ...rows.map(r => r.join(","))].join("\n");
-      const blob = new Blob([csv], { type: "text/csv" });
-      const a = document.createElement("a");
-      a.href = URL.createObjectURL(blob);
-      a.download = `hiveclicks_leads_${new Date().toISOString().split("T")[0]}.csv`;
-      a.click();
     }
   </script>
 </body>
