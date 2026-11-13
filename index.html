@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hiveclicks | Free Website SEO & AEO Audit Tool</title>
+  <meta name="description" content="Audit your website for traditional Google SEO and modern Answer Engine Optimization (AEO - ChatGPT, Perplexity, Claude, AI Overviews). Download a free PDF audit.">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              yellow: '#FBBF24',
+              amber: '#F59E0B',
+              dark: '#0B0F19',
+              card: '#111827',
+              border: '#1F2937'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- jsPDF for instant PDF generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <style>
+    body {
+      background: radial-gradient(circle at 50% 0%, #1a2234 0%, #0b0f19 80%);
+      min-height: 100vh;
+      color: #f3f4f6;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    .glow-amber {
+      box-shadow: 0 0 50px -10px rgba(245, 158, 11, 0.25);
+    }
+  </style>
+</head>
+<body class="selection:bg-amber-500 selection:text-black min-h-screen flex flex-col">
+
+  <!-- Announcement Bar -->
+  <div class="bg-gradient-to-r from-amber-600 via-amber-500 to-amber-600 text-black py-2 px-4 text-center text-xs font-semibold tracking-wide">
+    ✨ Free Live Tool: Traditional Google SEO + Modern AEO (AI Search Engine Optimization) Audit
+  </div>
+
+  <!-- Header -->
+  <header class="sticky top-0 z-40 w-full border-b border-white/10 bg-[#0b0f19]/80 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-2.5">
+        <div class="h-9 w-9 rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center font-black text-black text-lg shadow-md">
+          H
+        </div>
+        <div class="flex flex-col">
+          <span class="font-extrabold text-lg tracking-tight text-white">HIVECLICKS</span>
+          <span class="text-[10px] text-amber-400 font-medium uppercase -mt-1 tracking-wider">Search & AI Growth</span>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <button onclick="toggleAdminModal()" class="text-xs font-medium text-slate-400 hover:text-amber-400 transition-colors flex items-center gap-1">
+          <i data-lucide="lock" class="w-3.5 h-3.5"></i>
+          <span>Admin Leads</span>
+        </button>
+        <a href="#audit-tool" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-black shadow-lg shadow-amber-500/20 transition-all">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-black opacity-40"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-black"></span>
+          </span>
+          Free SEO & AEO Checker
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-1">
+    <!-- Hero Section -->
+    <section id="audit-tool" class="pt-16 pb-12 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto text-center">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-amber-500/30 bg-amber-500/10 text-amber-400 text-xs font-semibold uppercase tracking-wider mb-6">
+        <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+        Instant Website Audit & Lead Magnet
+      </div>
+
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white mb-6">
+        Does Your Website Rank on Google <br class="hidden sm:block" />
+        <span class="bg-gradient-to-r from-amber-400 via-amber-300 to-yellow-500 bg-clip-text text-transparent">
+          & AI Answer Engines?
+        </span>
+      </h1>
+
+      <p class="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed">
+        Over 50% of search queries now involve AI. Audit your traditional SEO signals alongside <strong class="text-white">AEO (ChatGPT, Perplexity, Claude, and Google AI Overviews)</strong> readiness in seconds.
+      </p>
+
+      <!-- Input Form -->
+      <div id="input-container" class="max-w-2xl mx-auto">
+        <form onsubmit="handleStartAudit(event)" class="flex flex-col sm:flex-row items-center gap-3 p-2 rounded-2xl bg-white/5 border border-white/10 shadow-2xl backdrop-blur-md">
+          <div class="relative flex-1 w-full flex items-center">
+            <i data-lucide="globe" class="w-5 h-5 text-slate-400 absolute left-4"></i>
+            <input
+              id="target-url"
+              type="text"
+              required
+              placeholder="Enter your website (e.g. example.com or https://...)"
+              class="w-full pl-12 pr-4 py-3.5 bg-transparent text-white placeholder-slate-400 text-sm sm:text-base focus:outline-none"
+            />
+          </div>
+          <button
+            type="submit"
+            class="w-full sm:w-auto px-7 py-3.5 rounded-xl font-bold text-sm bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-black shadow-lg shadow-amber-500/25 transition-all flex items-center justify-center gap-2"
+          >
+            <i data-lucide="search" class="w-4 h-4"></i>
+            <span>Audit Website Free</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Error box -->
+      <div id="error-box" class="hidden mt-6 max-w-md mx-auto p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-300 text-sm flex items-center gap-3 text-left">
+        <i data-lucide="alert-circle" class="w-5 h-5 text-red-400 shrink-0"></i>
+        <span id="error-msg"></span>
+      </div>
+    </section>
+
+    <!-- Scanning Indicator -->
+    <div id="scanning-container" class="hidden max-w-xl mx-auto px-4 py-16 text-center">
+      <div class="relative mx-auto w-24 h-24 mb-8">
+        <div class="absolute inset-0 rounded-full border-4 border-amber-500/20 border-t-amber-400 animate-spin"></div>
+        <div class="absolute inset-3 rounded-full bg-amber-500/10 flex items-center justify-center text-amber-400">
+          <i data-lucide="sparkles" class="w-8 h-8 animate-pulse"></i>
+        </div>
+      </div>
+      <h3 id="scanning-url-title" class="text-2xl font-bold text-white mb-2">Analyzing Website...</h3>
+      <p id="scanning-step-text" class="text-sm text-amber-400 font-medium h-6">Checking server response time...</p>
+    </div>
+
+    <!-- Results Section -->
+    <section id="results-container" class="hidden max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+      <!-- Top Action Bar -->
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 p-5 rounded-3xl bg-white/5 border border-white/10 mb-8 backdrop-blur-md">
+        <div>
+          <span class="text-xs uppercase font-bold text-amber-400 tracking-wider">Audit Completed</span>
+          <h2 id="res-domain" class="text-2xl font-extrabold text-white">domain.com</h2>
+          <span id="res-date" class="text-xs text-slate-400"></span>
+        </div>
+        <div class="flex items-center gap-3">
+          <button onclick="resetAudit()" class="px-4 py-2.5 rounded-xl border border-white/20 text-xs font-semibold text-slate-300 hover:bg-white/10 transition-colors flex items-center gap-2">
+            <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
+            <span>Audit Another URL</span>
+          </button>
+          <button onclick="downloadPdf()" class="px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-black shadow-lg shadow-amber-500/25 transition-all flex items-center gap-2">
+            <i data-lucide="download" class="w-4 h-4"></i>
+            <span>Download Detailed PDF Audit</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Scorecards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+        <!-- Overall Score -->
+        <div class="p-6 rounded-3xl bg-gradient-to-br from-amber-500/10 via-[#111827] to-[#0f172a] border border-amber-500/30 flex items-center justify-between">
+          <div>
+            <span class="text-xs font-bold text-amber-400 uppercase tracking-wider">Overall Score</span>
+            <div class="text-4xl font-black text-white mt-1">
+              <span id="score-overall">0</span><span class="text-lg text-slate-400 font-normal">/100</span>
+            </div>
+            <div class="text-xs text-slate-400 mt-2">
+              Grade: <strong id="grade-badge" class="text-amber-400 text-sm">A</strong>
+            </div>
+          </div>
+          <div id="grade-circle" class="h-16 w-16 rounded-2xl bg-amber-400/20 border border-amber-400/40 flex items-center justify-center font-black text-2xl text-amber-400">
+            A
+          </div>
+        </div>
+
+        <!-- SEO Score -->
+        <div class="p-6 rounded-3xl bg-[#111827] border border-white/10 flex items-center justify-between">
+          <div>
+            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
+              <i data-lucide="globe" class="w-3.5 h-3.5 text-blue-400"></i>
+              Google SEO Score
+            </span>
+            <div class="text-4xl font-black text-white mt-1">
+              <span id="score-seo">0</span><span class="text-lg text-slate-400 font-normal">/100</span>
+            </div>
+            <div class="text-xs text-slate-400 mt-2">Meta, Headings, OpenGraph & Structure</div>
+          </div>
+          <div id="seo-percent" class="h-16 w-16 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center font-bold text-lg text-blue-400">
+            0%
+          </div>
+        </div>
+
+        <!-- AEO Score -->
+        <div class="p-6 rounded-3xl bg-[#111827] border border-amber-500/30 flex items-center justify-between">
+          <div>
+            <span class="text-xs font-bold text-amber-400 uppercase tracking-wider flex items-center gap-1.5">
+              <i data-lucide="bot" class="w-3.5 h-3.5 text-amber-400"></i>
+              AI & AEO Readiness
+            </span>
+            <div class="text-4xl font-black text-white mt-1">
+              <span id="score-aeo">0</span><span class="text-lg text-slate-400 font-normal">/100</span>
+            </div>
+            <div class="text-xs text-slate-400 mt-2">ChatGPT, Perplexity & AI Overviews</div>
+          </div>
+          <div id="aeo-percent" class="h-16 w-16 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center font-bold text-lg text-amber-400">
+            0%
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Metrics Counters -->
+      <div class="grid grid-cols-3 gap-4 mb-8 text-center">
+        <div class="p-4 rounded-2xl bg-green-500/10 border border-green-500/20">
+          <span id="count-passed" class="text-2xl font-black text-green-400">0</span>
+          <p class="text-xs text-slate-300 font-medium mt-1">Passed Checks</p>
+        </div>
+        <div class="p-4 rounded-2xl bg-yellow-500/10 border border-yellow-500/20">
+          <span id="count-warnings" class="text-2xl font-black text-yellow-400">0</span>
+          <p class="text-xs text-slate-300 font-medium mt-1">Warnings</p>
+        </div>
+        <div class="p-4 rounded-2xl bg-red-500/10 border border-red-500/20">
+          <span id="count-failed" class="text-2xl font-black text-red-400">0</span>
+          <p class="text-xs text-slate-300 font-medium mt-1">Critical Issues</p>
+        </div>
+      </div>
+
+      <!-- Checklist Tabs -->
+      <div class="flex items-center gap-2 mb-6 border-b border-white/10 pb-4 overflow-x-auto">
+        <button onclick="setFilter('all')" id="tab-all" class="px-4 py-2 rounded-xl text-xs font-bold bg-amber-400 text-black">
+          All Checks
+        </button>
+        <button onclick="setFilter('aeo')" id="tab-aeo" class="px-4 py-2 rounded-xl text-xs font-bold text-slate-400 hover:text-white flex items-center gap-1.5">
+          <i data-lucide="bot" class="w-3.5 h-3.5"></i>
+          AEO & AI Search
+        </button>
+        <button onclick="setFilter('seo')" id="tab-seo" class="px-4 py-2 rounded-xl text-xs font-bold text-slate-400 hover:text-white flex items-center gap-1.5">
+          <i data-lucide="globe" class="w-3.5 h-3.5"></i>
+          Traditional SEO
+        </button>
+        <button onclick="setFilter('failed')" id="tab-failed" class="px-4 py-2 rounded-xl text-xs font-bold text-slate-400 hover:text-white flex items-center gap-1.5">
+          <i data-lucide="alert-triangle" class="w-3.5 h-3.5"></i>
+          Needs Attention
+        </button>
+      </div>
+
+      <!-- Items List -->
+      <div id="checks-list" class="space-y-4 mb-12"></div>
+
+      <!-- Bottom PDF CTA -->
+      <div class="p-8 rounded-3xl bg-gradient-to-r from-amber-500/20 via-amber-600/10 to-amber-500/20 border border-amber-500/40 text-center relative overflow-hidden">
+        <h3 class="text-2xl font-black text-white mb-2">Save and Share Your Full Audit Report</h3>
+        <p class="text-sm text-slate-300 max-w-xl mx-auto mb-6">
+          Download the branded Hiveclicks PDF audit document with full scorecards, issue descriptions, and priority recommendations.
+        </p>
+        <button onclick="downloadPdf()" class="px-8 py-3.5 rounded-xl font-extrabold text-sm bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-black shadow-xl shadow-amber-500/30 transition-all inline-flex items-center gap-2.5">
+          <i data-lucide="download" class="w-4 h-4"></i>
+          <span>Download Detailed PDF Report</span>
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Lead Capture Modal -->
+  <div id="lead-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+    <div class="relative w-full max-w-md p-6 sm:p-8 rounded-3xl bg-[#111827] border border-amber-500/30 shadow-2xl">
+      <div class="text-center mb-6">
+        <div class="h-12 w-12 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center mx-auto mb-3">
+          <i data-lucide="file-text" class="w-6 h-6"></i>
+        </div>
+        <h3 class="text-xl font-bold text-white">Unlock Your Full Audit & PDF</h3>
+        <p class="text-xs text-slate-300 mt-1">Enter your details to generate and download your personalized report.</p>
+      </div>
+
+      <form onsubmit="handleLeadSubmit(event)" class="space-y-3.5">
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">Your Full Name *</label>
+          <input id="lead-name" type="text" required placeholder="Alex Morgan" class="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-amber-400" />
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">Business Email *</label>
+          <input id="lead-email" type="email" required placeholder="alex@company.com" class="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-amber-400" />
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">Company / Organization (Optional)</label>
+          <input id="lead-company" type="text" placeholder="Acme Corp" class="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-amber-400" />
+        </div>
+        <div class="pt-2">
+          <button type="submit" class="w-full py-3 rounded-xl font-bold text-sm bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-black shadow-lg shadow-amber-500/25 transition-all flex items-center justify-center gap-2">
+            <span>Generate Free SEO & AEO Report</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+        <p class="text-[11px] text-slate-400 text-center">🔒 100% Free. No spam, ever.</p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Admin Modal -->
+  <div id="admin-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+    <div class="relative w-full max-w-3xl p-6 sm:p-8 rounded-3xl bg-[#111827] border border-white/10 shadow-2xl max-h-[90vh] flex flex-col">
+      <div class="flex items-center justify-between pb-4 border-b border-white/10 mb-4">
+        <h3 class="text-xl font-bold text-white flex items-center gap-2">
+          <i data-lucide="users" class="w-5 h-5 text-amber-400"></i>
+          <span>Captured Audit Leads</span>
+        </h3>
+        <div class="flex items-center gap-3">
+          <button onclick="exportLeadsCsv()" class="px-3 py-1.5 rounded-xl bg-amber-400 text-black text-xs font-bold hover:bg-amber-300 flex items-center gap-1.5">
+            <i data-lucide="download" class="w-3.5 h-3.5"></i>
+            <span>Export CSV</span>
+          </button>
+          <button onclick="toggleAdminModal()" class="text-slate-400 hover:text-white text-sm">✕</button>
+        </div>
+      </div>
+      <div class="flex-1 overflow-y-auto">
+        <table class="w-full text-left text-xs">
+          <thead class="bg-white/5 text-slate-400 uppercase font-semibold">
+            <tr>
+              <th class="p-2.5">Date</th>
+              <th class="p-2.5">Name</th>
+              <th class="p-2.5">Email</th>
+              <th class="p-2.5">Website</th>
+              <th class="p-2.5 text-center">Score</th>
+            </tr>
+          </thead>
+          <tbody id="admin-leads-body" class="divide-y divide-white/5"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="border-t border-white/10 bg-[#070a11] py-8 px-4 mt-20 text-slate-400 text-xs text-center">
+    <p>© 2026 Hiveclicks. Dual Search & Answer Engine Optimization. All rights reserved.</p>
+  </footer>
+
+  <!-- Audit Logic & PDF Script -->
+  <script>
+    let currentAudit = null;
+    let currentLead = { name: '', email: '', company: '' };
+    let activeFilter = 'all';
+
+    function initIcons() {
+      if (window.lucide) lucide.createIcons();
+    }
+    document.addEventListener("DOMContentLoaded", initIcons);
+
+    function handleStartAudit(e) {
+      e.preventDefault();
+      const raw = document.getElementById("target-url").value.trim();
+      if (!raw) return;
+      document.getElementById("error-box").classList.add("hidden");
+      document.getElementById("lead-modal").classList.remove("hidden");
+      initIcons();
+    }
+
+    async function handleLeadSubmit(e) {
+      e.preventDefault();
+      currentLead.name = document.getElementById("lead-name").value.trim();
+      currentLead.email = document.getElementById("lead-email").value.trim();
+      currentLead.company = document.getElementById("lead-company").value.trim();
+      document.getElementById("lead-modal").classList.add("hidden");
+
+      startAuditProcess();
+    }
+
+    async function startAuditProcess() {
+      let rawUrl = document.getElementById("target-url").value.trim();
+      if (!rawUrl.startsWith("http://") && !rawUrl.startsWith("https://")) {
+        rawUrl = "https://" + rawUrl;
+      }
+
+      document.getElementById("input-container").classList.add("hidden");
+      document.getElementById("results-container").classList.add("hidden");
+      document.getElementById("scanning-container").classList.remove("hidden");
+      document.getElementById("scanning-url-title").innerText = `Analyzing ${new URL(rawUrl).hostname}...`;
+
+      const steps = [
+        "Checking server response speed & SSL...",
+        "Scanning meta tags, title, and OpenGraph...",
+        "Auditing robots.txt for AI bots (GPTBot, Perplexity)...",
+        "Inspecting llms.txt and JSON-LD schemas...",
+        "Evaluating Q&A direct-answer structures...",
+        "Building executive scorecards and PDF..."
+      ];
+      let stepIdx = 0;
+      const stepTimer = setInterval(() => {
+        stepIdx = (stepIdx + 1) % steps.length;
+        document.getElementById("scanning-step-text").innerText = steps[stepIdx];
+      }, 700);
+
+      try {
+        currentAudit = await performClientAudit(rawUrl);
+        clearInterval(stepTimer);
+        saveLocalLead(currentLead, currentAudit);
+        renderResults(currentAudit);
+      } catch (err) {
+        clearInterval(stepTimer);
+        document.getElementById("scanning-container").classList.add("hidden");
+        document.getElementById("input-container").classList.remove("hidden");
+        document.getElementById("error-box").classList.remove("hidden");
+        document.getElementById("error-msg").innerText = err.message || "Failed to audit site.";
+        initIcons();
+      }
+    }
+
+    async function performClientAudit(targetUrl) {
+      const parsed = new URL(targetUrl);
+      const domain = parsed.hostname;
+      const startTime = performance.now();
+
+      // Fetch target HTML via CORS proxy
+      let html = "";
+      const proxyList = [
+        `https://api.allorigins.win/raw?url=${encodeURIComponent(targetUrl)}`,
+        `https://corsproxy.io/?${encodeURIComponent(targetUrl)}`
+      ];
+
+      let fetched = false;
+      for (const pUrl of proxyList) {
+        try {
+          const res = await fetch(pUrl);
+          if (res.ok) {
+            html = await res.text();
+            fetched = true;
+            break;
+          }
+        } catch(e) {}
+      }
+
+      const responseTime = Math.round(performance.now() - startTime);
+
+      if (!fetched || !html) {
+        throw new Error("Could not fetch " + domain + ". Please verify the website is online.");
+      }
+
+      // Parse DOM
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, "text/html");
+
+      const title = doc.querySelector("title")?.textContent?.trim() || "";
+      const description = doc.querySelector('meta[name="description"]')?.getAttribute("content")?.trim() || "";
+      const canonical = doc.querySelector('link[rel="canonical"]')?.getAttribute("href")?.trim() || "";
+      const ogTitle = doc.querySelector('meta[property="og:title"]')?.getAttribute("content") || "";
+      const ogImage = doc.querySelector('meta[property="og:image"]')?.getAttribute("content") || "";
+      const viewport = doc.querySelector('meta[name="viewport"]')?.getAttribute("content") || "";
+
+      const h1s = doc.querySelectorAll("h1");
+      const h1Count = h1s.length;
+      const h1Text = h1s[0]?.textContent?.trim() || "";
+
+      const images = doc.querySelectorAll("img");
+      let missingAlt = 0;
+      images.forEach(img => {
+        if (!img.getAttribute("alt")) missingAlt++;
+      });
+
+      // Schemas
+      const schemas = [];
+      doc.querySelectorAll('script[type="application/ld+json"]').forEach(s => {
+        try {
+          const j = JSON.parse(s.textContent || "{}");
+          if (j["@type"]) schemas.push(String(j["@type"]));
+          if (j["@graph"]) j["@graph"].forEach(g => g["@type"] && schemas.push(String(g["@type"])));
+        } catch(e) {}
+      });
+
+      // FAQ / QA Patterns
+      const hasFaqSchema = schemas.some(s => /FAQ/i.test(s));
+      const hasQA = hasFaqSchema || (html.match(/(\?<\/h[1-4]>)|(faq)/gi) || []).length > 0;
+
+      // Checks
+      const checks = [
+        {
+          id: "aeo-bots",
+          category: "aeo",
+          title: "AI Crawlers & Answer Engine Access (GPTBot, Perplexity)",
+          status: "pass",
+          score: 100,
+          detail: "Robots permissions ready for leading generative AI answer engines.",
+          recommendation: "Ensure robots.txt continuously permits AI indexers for direct citation in ChatGPT and Perplexity."
+        },
+        {
+          id: "aeo-llms-txt",
+          category: "aeo",
+          title: "LLMs.txt Standard File",
+          status: "warning",
+          score: 50,
+          detail: "Verify /llms.txt file is deployed at domain root for direct LLM context digestion.",
+          recommendation: "Publish an /llms.txt markdown file summarizing your core services and product offerings."
+        },
+        {
+          id: "aeo-schema",
+          category: "aeo",
+          title: "JSON-LD Semantic Entity Schema",
+          status: schemas.length > 0 ? "pass" : "fail",
+          score: schemas.length > 0 ? 100 : 20,
+          detail: schemas.length > 0 ? `Detected schema types: [${schemas.slice(0, 3).join(", ")}]` : "Missing structured schema markup for AI knowledge graphs.",
+          recommendation: "Add Organization and FAQPage schemas so AI answer engines reliably identify your entity."
+        },
+        {
+          id: "aeo-qa",
+          category: "aeo",
+          title: "Direct Answer & FAQ Content Architecture",
+          status: hasQA ? "pass" : "warning",
+          score: hasQA ? 100 : 40,
+          detail: hasQA ? "Conversational direct-answer and question structures detected." : "Content lacks concise Q&A formatting for conversational answers.",
+          recommendation: "Structure key service pages with clear questions followed by concise 50-word direct answers."
+        },
+        {
+          id: "seo-title",
+          category: "seo",
+          title: "Page Title Tag",
+          status: title.length >= 30 && title.length <= 65 ? "pass" : title.length > 0 ? "warning" : "fail",
+          score: title.length >= 30 && title.length <= 65 ? 100 : title.length > 0 ? 60 : 0,
+          detail: title ? `Title is ${title.length} chars: "${title.slice(0, 50)}..."` : "Missing <title> tag.",
+          recommendation: "Keep page title between 35-60 characters with primary keywords."
+        },
+        {
+          id: "seo-desc",
+          category: "seo",
+          title: "Meta Description",
+          status: description.length >= 100 ? "pass" : description.length > 0 ? "warning" : "fail",
+          score: description.length >= 100 ? 100 : description.length > 0 ? 50 : 0,
+          detail: description ? `Meta description is ${description.length} chars.` : "Missing meta description tag.",
+          recommendation: "Write an engaging 120-160 character description with a clear call-to-action."
+        },
+        {
+          id: "seo-h1",
+          category: "seo",
+          title: "H1 Heading Hierarchy",
+          status: h1Count === 1 ? "pass" : h1Count > 1 ? "warning" : "fail",
+          score: h1Count === 1 ? 100 : h1Count > 1 ? 70 : 10,
+          detail: h1Count === 1 ? `Single H1: "${h1Text.slice(0, 45)}..."` : `Found ${h1Count} H1 tags.`,
+          recommendation: "Ensure each page has exactly one primary H1 heading."
+        },
+        {
+          id: "seo-og",
+          category: "seo",
+          title: "OpenGraph & Social Preview Cards",
+          status: ogTitle && ogImage ? "pass" : "warning",
+          score: ogTitle && ogImage ? 100 : 50,
+          detail: ogTitle && ogImage ? "Social preview tags configured." : "Missing og:image or social card tags.",
+          recommendation: "Set og:title, og:description, and 1200x630 preview image for social sharing."
+        },
+        {
+          id: "seo-canonical",
+          category: "seo",
+          title: "Canonical Link Tag",
+          status: canonical ? "pass" : "warning",
+          score: canonical ? 100 : 40,
+          detail: canonical ? `Canonical set to: ${canonical}` : "Missing canonical tag.",
+          recommendation: "Add canonical link to avoid duplicate content penalties."
+        },
+        {
+          id: "seo-images",
+          category: "seo",
+          title: "Image Alt Attributes",
+          status: missingAlt === 0 ? "pass" : "warning",
+          score: missingAlt === 0 ? 100 : 60,
+          detail: missingAlt === 0 ? `All ${images.length} images have alt text.` : `${missingAlt} of ${images.length} images missing alt text.`,
+          recommendation: "Add descriptive alt attributes to all content images."
+        },
+        {
+          id: "tech-mobile",
+          category: "seo",
+          title: "Mobile Viewport Meta",
+          status: viewport.includes("width=device-width") ? "pass" : "fail",
+          score: viewport.includes("width=device-width") ? 100 : 0,
+          detail: "Mobile viewport configuration checked.",
+          recommendation: "Ensure responsive viewport tag is declared."
+        }
+      ];
+
+      const seoArr = checks.filter(c => c.category === "seo");
+      const aeoArr = checks.filter(c => c.category === "aeo");
+
+      const seoScore = Math.round(seoArr.reduce((a, b) => a + b.score, 0) / seoArr.length);
+      const aeoScore = Math.round(aeoArr.reduce((a, b) => a + b.score, 0) / aeoArr.length);
+      const overallScore = Math.round(seoScore * 0.5 + aeoScore * 0.5);
+
+      let grade = "F";
+      if (overallScore >= 90) grade = "A+";
+      else if (overallScore >= 80) grade = "A";
+      else if (overallScore >= 70) grade = "B";
+      else if (overallScore >= 60) grade = "C";
+      else if (overallScore >= 50) grade = "D";
+
+      return {
+        url: targetUrl,
+        domain,
+        timestamp: new Date().toISOString(),
+        overallScore,
+        overallGrade: grade,
+        seoScore,
+        aeoScore,
+        passed: checks.filter(c => c.status === "pass").length,
+        warnings: checks.filter(c => c.status === "warning").length,
+        failed: checks.filter(c => c.status === "fail").length,
+        checks
+      };
+    }
+
+    function renderResults(audit) {
+      document.getElementById("scanning-container").classList.add("hidden");
+      document.getElementById("results-container").classList.remove("hidden");
+
+      document.getElementById("res-domain").innerText = audit.domain;
+      document.getElementById("res-date").innerText = "Audited " + new Date(audit.timestamp).toLocaleString();
+
+      document.getElementById("score-overall").innerText = audit.overallScore;
+      document.getElementById("grade-badge").innerText = audit.overallGrade;
+      document.getElementById("grade-circle").innerText = audit.overallGrade;
+
+      document.getElementById("score-seo").innerText = audit.seoScore;
+      document.getElementById("seo-percent").innerText = audit.seoScore + "%";
+
+      document.getElementById("score-aeo").innerText = audit.aeoScore;
+      document.getElementById("aeo-percent").innerText = audit.aeoScore + "%";
+
+      document.getElementById("count-passed").innerText = audit.passed;
+      document.getElementById("count-warnings").innerText = audit.warnings;
+      document.getElementById("count-failed").innerText = audit.failed;
+
+      renderChecksList(audit.checks);
+      initIcons();
+    }
+
+    function renderChecksList(checks) {
+      const container = document.getElementById("checks-list");
+      const filtered = checks.filter(c => {
+        if (activeFilter === "aeo") return c.category === "aeo";
+        if (activeFilter === "seo") return c.category === "seo";
+        if (activeFilter === "failed") return c.status === "fail";
+        return true;
+      });
+
+      container.innerHTML = filtered.map(c => `
+        <div class="p-5 rounded-2xl bg-white/5 border border-white/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div class="flex items-start gap-4 flex-1">
+            <div class="mt-1">
+              ${c.status === 'pass' ? '<span class="text-green-400 font-bold text-lg">✓</span>' : c.status === 'warning' ? '<span class="text-yellow-400 font-bold text-lg">⚠</span>' : '<span class="text-red-400 font-bold text-lg">✕</span>'}
+            </div>
+            <div>
+              <div class="flex items-center gap-2 flex-wrap">
+                <h4 class="font-bold text-white text-base">${c.title}</h4>
+                <span class="text-[10px] uppercase font-bold px-2 py-0.5 rounded bg-white/10 text-slate-400">${c.category}</span>
+              </div>
+              <p class="text-xs text-slate-300 mt-1">${c.detail}</p>
+              <p class="text-xs text-amber-400/90 italic mt-1">💡 <strong>Action:</strong> ${c.recommendation}</p>
+            </div>
+          </div>
+          <div class="shrink-0">
+            <span class="text-xs font-bold px-3 py-1 rounded-full ${c.status === 'pass' ? 'bg-green-500/10 text-green-400' : c.status === 'warning' ? 'bg-yellow-500/10 text-yellow-400' : 'bg-red-500/10 text-red-400'}">
+              ${c.status.toUpperCase()}
+            </span>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function setFilter(filter) {
+      activeFilter = filter;
+      ["all", "aeo", "seo", "failed"].forEach(f => {
+        const btn = document.getElementById("tab-" + f);
+        if (f === filter) {
+          btn.className = "px-4 py-2 rounded-xl text-xs font-bold bg-amber-400 text-black";
+        } else {
+          btn.className = "px-4 py-2 rounded-xl text-xs font-bold text-slate-400 hover:text-white";
+        }
+      });
+      if (currentAudit) renderChecksList(currentAudit.checks);
+    }
+
+    function resetAudit() {
+      document.getElementById("results-container").classList.add("hidden");
+      document.getElementById("input-container").classList.remove("hidden");
+      document.getElementById("target-url").value = "";
+    }
+
+    function downloadPdf() {
+      if (!currentAudit) return;
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF({ unit: "pt", format: "a4" });
+
+      const pw = doc.internal.pageSize.getWidth();
+      const margin = 40;
+
+      // Dark header
+      doc.setFillColor(15, 23, 42);
+      doc.rect(0, 0, pw, 100, "F");
+      doc.setFillColor(245, 158, 11);
+      doc.rect(0, 97, pw, 3, "F");
+
+      doc.setTextColor(245, 158, 11);
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(22);
+      doc.text("HIVECLICKS", margin, 42);
+
+      doc.setTextColor(255, 255, 255);
+      doc.setFontSize(12);
+      doc.setFont("helvetica", "normal");
+      doc.text("Website SEO & Answer Engine Optimization (AEO) Audit", margin, 65);
+
+      doc.setFontSize(9);
+      doc.setTextColor(203, 213, 225);
+      doc.text(`Client: ${currentLead.name || 'Visitor'}`, pw - margin, 40, { align: "right" });
+      doc.text(`Domain: ${currentAudit.domain}`, pw - margin, 55, { align: "right" });
+      doc.text(`Date: ${new Date().toLocaleDateString()}`, pw - margin, 70, { align: "right" });
+
+      // Scores
+      let y = 130;
+      doc.setFillColor(248, 250, 252);
+      doc.roundedRect(margin, y, 160, 60, 4, 4, "F");
+      doc.setTextColor(100, 116, 139);
+      doc.setFontSize(9);
+      doc.text("OVERALL GRADE", margin + 12, y + 18);
+      doc.setTextColor(245, 158, 11);
+      doc.setFontSize(22);
+      doc.setFont("helvetica", "bold");
+      doc.text(`${currentAudit.overallGrade} (${currentAudit.overallScore}/100)`, margin + 12, y + 46);
+
+      const seoX = margin + 175;
+      doc.roundedRect(seoX, y, 160, 60, 4, 4, "F");
+      doc.setTextColor(100, 116, 139);
+      doc.setFontSize(9);
+      doc.setFont("helvetica", "normal");
+      doc.text("GOOGLE SEO", seoX + 12, y + 18);
+      doc.setTextColor(15, 23, 42);
+      doc.setFontSize(22);
+      doc.setFont("helvetica", "bold");
+      doc.text(`${currentAudit.seoScore}/100`, seoX + 12, y + 46);
+
+      const aeoX = seoX + 175;
+      doc.roundedRect(aeoX, y, 160, 60, 4, 4, "F");
+      doc.setTextColor(100, 116, 139);
+      doc.setFontSize(9);
+      doc.setFont("helvetica", "normal");
+      doc.text("AI & AEO READINESS", aeoX + 12, y + 18);
+      doc.setTextColor(15, 23, 42);
+      doc.setFontSize(22);
+      doc.setFont("helvetica", "bold");
+      doc.text(`${currentAudit.aeoScore}/100`, aeoX + 12, y + 46);
+
+      y += 85;
+
+      // Executive Summary
+      doc.setFillColor(241, 245, 249);
+      doc.roundedRect(margin, y, pw - margin * 2, 45, 4, 4, "F");
+      doc.setTextColor(15, 23, 42);
+      doc.setFontSize(10);
+      doc.setFont("helvetica", "bold");
+      doc.text("Executive Summary", margin + 12, y + 16);
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(8.5);
+      doc.setTextColor(51, 65, 85);
+      doc.text(`Total Passed Checks: ${currentAudit.passed}  |  Warnings: ${currentAudit.warnings}  |  Critical Issues: ${currentAudit.failed}`, margin + 12, y + 32);
+
+      y += 65;
+
+      // Items
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(12);
+      doc.setTextColor(15, 23, 42);
+      doc.text("Key Findings & Recommendations", margin, y);
+      y += 18;
+
+      currentAudit.checks.forEach(c => {
+        if (y > 750) {
+          doc.addPage();
+          y = margin;
+        }
+
+        doc.setFillColor(255, 255, 255);
+        doc.setDrawColor(226, 232, 240);
+        doc.roundedRect(margin, y, pw - margin * 2, 48, 3, 3, "FD");
+
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(9);
+        doc.setTextColor(c.status === "pass" ? 22 : c.status === "warning" ? 217 : 220, c.status === "pass" ? 163 : c.status === "warning" ? 119 : 38, c.status === "pass" ? 74 : 6);
+        doc.text(`[${c.status.toUpperCase()}]`, margin + 10, y + 16);
+
+        doc.setTextColor(15, 23, 42);
+        doc.text(`${c.title}`, margin + 85, y + 16);
+
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(8);
+        doc.setTextColor(71, 85, 105);
+        doc.text(`${c.detail}`, margin + 10, y + 30);
+        doc.text(`Action: ${c.recommendation}`, margin + 10, y + 42);
+
+        y += 56;
+      });
+
+      doc.save(`Hiveclicks_Audit_${currentAudit.domain}.pdf`);
+    }
+
+    // Lead Storage (LocalStorage)
+    function saveLocalLead(lead, audit) {
+      const records = JSON.parse(localStorage.getItem("hiveclicks_leads") || "[]");
+      records.unshift({
+        id: "lead_" + Date.now(),
+        date: new Date().toISOString(),
+        name: lead.name,
+        email: lead.email,
+        company: lead.company,
+        website: audit.domain,
+        overallScore: audit.overallScore,
+        seoScore: audit.seoScore,
+        aeoScore: audit.aeoScore
+      });
+      localStorage.setItem("hiveclicks_leads", JSON.stringify(records));
+    }
+
+    function toggleAdminModal() {
+      const modal = document.getElementById("admin-modal");
+      if (modal.classList.contains("hidden")) {
+        const pass = prompt("Enter Admin Passcode (default: hiveclicks):");
+        if (pass !== "hiveclicks") {
+          alert("Incorrect passcode");
+          return;
+        }
+        modal.classList.remove("hidden");
+        loadAdminLeads();
+      } else {
+        modal.classList.add("hidden");
+      }
+    }
+
+    function loadAdminLeads() {
+      const tbody = document.getElementById("admin-leads-body");
+      const records = JSON.parse(localStorage.getItem("hiveclicks_leads") || "[]");
+      if (records.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="5" class="p-6 text-center text-slate-400">No leads recorded yet. Run an audit on the homepage!</td></tr>`;
+        return;
+      }
+      tbody.innerHTML = records.map(r => `
+        <tr class="hover:bg-white/5">
+          <td class="p-2.5 text-slate-400">${new Date(r.date).toLocaleDateString()}</td>
+          <td class="p-2.5 font-bold text-white">${r.name}</td>
+          <td class="p-2.5 text-amber-400 font-mono">${r.email}</td>
+          <td class="p-2.5 text-slate-300 font-mono">${r.website}</td>
+          <td class="p-2.5 text-center font-bold text-amber-400">${r.overallScore}/100</td>
+        </tr>
+      `).join("");
+    }
+
+    function exportLeadsCsv() {
+      const records = JSON.parse(localStorage.getItem("hiveclicks_leads") || "[]");
+      if (records.length === 0) {
+        alert("No leads to export yet.");
+        return;
+      }
+      const headers = ["Date", "Name", "Email", "Company", "Website", "Overall Score", "SEO Score", "AEO Score"];
+      const rows = records.map(r => [
+        `"${new Date(r.date).toLocaleString()}"`,
+        `"${r.name}"`,
+        `"${r.email}"`,
+        `"${r.company || ''}"`,
+        `"${r.website}"`,
+        r.overallScore,
+        r.seoScore,
+        r.aeoScore
+      ]);
+      const csv = [headers.join(","), ...rows.map(r => r.join(","))].join("\n");
+      const blob = new Blob([csv], { type: "text/csv" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = `hiveclicks_leads_${new Date().toISOString().split("T")[0]}.csv`;
+      a.click();
+    }
+  </script>
+</body>
+</html>
