@@ -1,0 +1,16 @@
+[
+  {
+    "id": "lead_demo_hiveclicks_01",
+    "name": "Sarah Jenkins",
+    "email": "sarah.jenkins@techgrowth.io",
+    "company": "TechGrowth Solutions",
+    "phone": "+1 (555) 234-5678",
+    "website": "https://techgrowth.io",
+    "scores": {
+      "overall": 82,
+      "seo": 88,
+      "aeo": 74
+    },
+    "createdAt": "2026-11-13T18:30:00.000Z"
+  }
+]
